@@ -5,7 +5,7 @@ import axios from 'axios';
 class MovieAppApi {
   constructor() {
     // Initialize your API base URL to localhost:3001
-    this.apiBase = BASE_URL;
+    this.apiBase = process.env.REACT_APP_BASE_URL;
   }
 
    async registerUser(username, password) {

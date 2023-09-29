@@ -53,7 +53,7 @@ const Favorites = () => {
         {favorites.map((movieName) => (
           <li key={movieName} className='fav-item'>
             {movieName}
-            <button className='delete0' onClick={() => handleDeleteFavorite(movieName)}>Delete</button>
+            <button className='delete' onClick={() => handleDeleteFavorite(movieName)}>Delete</button>
           </li>
         ))}
       </ul>
