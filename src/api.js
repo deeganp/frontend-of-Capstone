@@ -2,8 +2,6 @@
 
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
-
 class MovieAppApi {
   constructor() {
     // Initialize your API base URL to localhost:3001
@@ -65,6 +63,18 @@ class MovieAppApi {
     }
   }
   
+  async deleteFavorite(username, movieName) {
+    try {
+      // Make a DELETE request to delete a favorite movie
+      const response = await axios.delete(`${this.apiBase}/users/favorites/delete`, {
+        data: { username, movieName }, // Send username and movieName in the request body
+      });
+      
+      return response.data; // Return result (e.g., success message)
+    } catch (error) {
+      throw new Error('Failed to delete favorite movie');
+    }
+  }
 }
 
 export default MovieAppApi;
