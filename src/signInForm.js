@@ -14,14 +14,27 @@ const SignInForm = ({api, error} ) => {
    const res = await api.loginUser(username, password); 
    login(res.userObject.username);
    localStorage.setItem('token', res.token);
+
+   alert ('Login successful');
+   setUsername('');
+   setPassword('');
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    try {
     // Call the register function and pass the username and password
-    const user = await api.registerUser(username, password);
-    login(user); 
+      await api.registerUser(username, password);
+      alert('Registration successful');
+      setUsername('');
+      setPassword('');
+    } catch (err) {
+      // Handle registration error here
+      console.error('Registration failed:', err);
+      alert('Registration failed. Please try again.');
+    }
   };
+
 
   return (
     <div>
