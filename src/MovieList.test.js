@@ -1,10 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import MovieList from './MovieList';
-import * as AuthApi from './AuthApi'; // Import your authentication API functions
+ // Import your authentication API functions
 
 // Mock the AuthApi functions and the useAuth hook
-jest.mock('./AuthApi');
 jest.mock('./AuthContext', () => ({
   useAuth: jest.fn(),
 }));
