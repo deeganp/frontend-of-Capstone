@@ -10,6 +10,7 @@ import Favorites from './favorites';
 import { AuthContextProvider } from './AuthContext';
 import MovieAppApi from './api';
 import HomeVid from './homeVid';
+import { ToastProvider } from 'react-toast-notifications';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
     setMovies(movieData);
   };
   return (
-
+<ToastProvider>
     <div className="App">
       <AuthContextProvider>
         <header className="App-header">
@@ -51,7 +52,7 @@ function App() {
         </BrowserRouter>
       </AuthContextProvider>
     </div>
-
+  </ToastProvider>
   );
 }
 
