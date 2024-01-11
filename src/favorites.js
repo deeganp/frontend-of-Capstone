@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import MovieAppApi from './api'; // Import your MovieAppApi class
+import MovieAppApi from './api'; 
 import { useAuth } from './AuthContext';
 import { useHistory } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications';
 import './favorites.css';
 
 const Favorites = () => {
@@ -10,6 +11,7 @@ const Favorites = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const history = useHistory();
+  const { addToast } = useToasts();
   
   useEffect(() => {
     if (user) {
@@ -17,7 +19,7 @@ const Favorites = () => {
       const fetchFavorites = async () => {
         try {
           const api = new MovieAppApi();
-          const userFavorites = await api.getFavorites(user); // Use user.username
+          const userFavorites = await api.getFavorites(user); 
           setFavorites(userFavorites);
           setLoading(false);
         } catch (err) {
@@ -29,7 +31,7 @@ const Favorites = () => {
       fetchFavorites();
     } else {
       // Handle the case when no user is logged in (e.g., redirect to login)
-      history.push('/');
+      history.push('/signin');
       setLoading(false);
     }
   }, [user]);
@@ -37,14 +39,14 @@ const Favorites = () => {
   const handleDeleteFavorite = async (movieName) => {
     try {
       const api = new MovieAppApi();
-      await api.deleteFavorite(user, movieName); // Use user.username
+      await api.deleteFavorite(user, movieName); 
       // Refresh the favorites list after deletion
       const updatedFavorites = favorites.filter((fav) => fav !== movieName);
       setFavorites(updatedFavorites);
-      alert(`Deleted ${movieName} from favorites!`);
-
+      addToast(`Deleted ${movieName} from favorites!`,{ appearance: 'success', autoDismiss: true });
     } catch (err) {
-      setError('Failed to delete favorite');
+      console.error('Delete movie failed', error);
+      addToast(`Failed to delete ${movieName} from favorites, please try again.`, { appearance: 'error', autoDismiss: true })
     }
   };
 
