@@ -21,14 +21,19 @@ class MovieAppApi {
     }
   }
 
-  async loginUser(username, password) {
+  async loginUser(username, password, token = null) {
     try {
+      if(token){
+        const res = await axios.post(`${this.apiBase}/users/login`, { token });
+        return res.data;
+      } else {
       // Make a POST request to log in
       const response = await axios.post(`${this.apiBase}/users/login`, {
         username,
         password,
       });
       return response.data; // Return authentication result (e.g., token)
+     }
     } catch (error) {
       throw new Error('Login failed');
     }

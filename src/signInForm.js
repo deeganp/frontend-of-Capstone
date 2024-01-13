@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useAuth } from './AuthContext';
 import { useToasts } from 'react-toast-notifications';
-import './signInForm.css';
+import './signInForm.css'
 
 
-const SignInForm = ({ api, error }) => {
+const SignInForm = ({ api, error, setAuthenticated  }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useAuth();
@@ -18,11 +18,12 @@ const SignInForm = ({ api, error }) => {
       login(res.userObject.username);
       localStorage.setItem('token', res.token);
       addToast('User logged in successfully!', { appearance: 'success', autoDismiss: true });
+      setAuthenticated(true);
       setUsername('');
       setPassword('');
     } catch (error) {
       // Handle the failed sign-in and show an alert
-      console.error('Log In failed:', error);
+      console.error('Log In Failed', error);
       addToast('Login failed. Please check your credentials and try again.',{appearance: 'error', autoDismiss: true});
     }
   };
