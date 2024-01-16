@@ -46,14 +46,14 @@ const Favorites = () => {
       setFavorites(updatedFavorites);
       addToast(`Deleted ${movieName} from favorites!`,{ appearance: 'success', autoDismiss: true });
     } catch (err) {
-      console.error('Delete movie failed', error);
+      console.error('Failed to delete favorite', error);
       addToast(`Failed to delete ${movieName} from favorites, please try again.`, { appearance: 'error', autoDismiss: true })
     }
   };
 
   return (
     <div>
-      <h2>My Favorites</h2>
+      <p id='fav-page-title'>My Favorites</p>
       {favorites.length > 0 ? (
         <ul className='fav-list'>
           {favorites.map((movieName) => (

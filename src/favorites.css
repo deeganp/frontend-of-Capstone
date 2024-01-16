@@ -1,16 +1,14 @@
-/* Favorites.css */
-
-/* Style the movie list */
 .fav-list {
   list-style: none;
   padding: 0;
   flex-wrap: wrap;
-  justify-content: center; /* Center items horizontally */
+  justify-content: center;
 }
+
 .no-favorites {
   font-size: 25px;
   font-family: 'Limelight', cursive;
-  color: #555;
+  color: #4287f5;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -21,40 +19,46 @@
 .fav-item {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally and vertically */
+  align-items: center;
+  /* Center items horizontally and vertically */
   padding: 10px;
   margin: 10px;
-  background-color: #f5f5f5;
+  border: 5px solid #ffd700;
   border-radius: 5px;
   font-family: Arial, sans-serif;
   font-size: 30px;
-  color: #37b11f;
+  color: #4287f5;
   transition: transform 0.2s ease-in-out;
-  text-align: center; /* Center text within the container */
-  min-width: 200px; /* Set a minimum width for the containers */
+  text-align: center;
+  /* Center text within the container */
+  min-width: 200px;
+  /* Set a minimum width for the containers */
 }
 
 
 .delete {
-  --c:  #a51510; /* the color*/
-  
-  box-shadow: 0 0 0 .1em inset var(--c); 
+  --c: #a51510;
+  /* the color*/
+
+  box-shadow: 0 0 0 .1em inset var(--c);
   --_g: linear-gradient(var(--c) 0 0) no-repeat;
-  background: 
-    var(--_g) calc(var(--_p,0%) - 100%) 0%,
-    var(--_g) calc(200% - var(--_p,0%)) 0%,
-    var(--_g) calc(var(--_p,0%) - 100%) 100%,
-    var(--_g) calc(200% - var(--_p,0%)) 100%;
-  background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+  background:
+    var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p, 0%)) 0%,
+    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+  background-size: 50.5% calc(var(--_p, 0%)/2 + .5%);
   outline-offset: .1em;
   transition: background-size .4s, background-position 0s .4s;
 }
+
 .delete:hover {
   --_p: 100%;
   transition: background-position .4s, background-size 0s;
 }
+
 .delete:active {
-  box-shadow: 0 0 9e9q inset #0009; 
+  box-shadow: 0 0 9e9q inset #0009;
   background-color: var(--c);
   color: #fff;
 }
@@ -64,6 +68,13 @@
   font-size: 1.5rem;
   cursor: pointer;
   padding: .1em .6em;
-  font-weight: bold;  
+  font-weight: bold;
   border: none;
+  color: white;
+}
+
+#fav-page-title {
+  font-size: 5vh;
+  color: #ffd700;
+  font-family: 'Limelight', cursive;
 }

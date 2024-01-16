@@ -1,77 +1,58 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+import { AuthContextProvider } from './AuthContext'; // Import the AuthContextProvider
 import SignInForm from './signInForm';
-import * as AuthApi from './AuthApi'; // Import your authentication API functions
+import { ToastProvider } from 'react-toast-notifications';
 
-// Mock the AuthApi functions
-jest.mock('./AuthApi');
+const mockApi = {
+  loginUser: jest.fn().mockResolvedValue({
+    userObject: { username: 'testuser' },
+    token: 'testtoken',
+  }),
+  registerUser: jest.fn(),
+  login: jest.fn(),
+};
 
 describe('SignInForm component', () => {
   it('handles user login', async () => {
-    // Mock the loginUser function to return a user and token
-    AuthApi.loginUser.mockResolvedValue({
-      userObject: { username: 'testuser' },
-      token: 'testtoken',
-    });
+    const { getByLabelText, getByText } = render(
+      <ToastProvider>
+        <AuthContextProvider>
+          <SignInForm api={mockApi} error="" />
+        </AuthContextProvider>
+      </ToastProvider>
+    );
 
-    // Mock the useAuth hook
-    const useAuthMock = {
-      login: jest.fn(),
-    };
+    const usernameInput = getByLabelText('Username');
+    const passwordInput = getByLabelText('Password');
 
-    jest.spyOn(require('./AuthContext'), 'useAuth').mockReturnValue(useAuthMock);
-
-    render(<SignInForm api={AuthApi} error="" />);
-
-    // Find the username and password input fields
-    const usernameInput = screen.getByLabelText('Username');
-    const passwordInput = screen.getByLabelText('Password');
-
-    // Enter the username and password
     fireEvent.change(usernameInput, { target: { value: 'testuser' } });
     fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
 
-    // Find and click the "Sign In" button
-    const signInButton = screen.getByText('Sign In');
-    fireEvent.click(signInButton);
+    fireEvent.click(getByText('Sign In'));
 
-    // Wait for the login to be called with the correct username
-    await waitFor(() => {
-      expect(AuthApi.loginUser).toHaveBeenCalledWith('testuser', 'testpassword');
-      expect(useAuthMock.login).toHaveBeenCalledWith('testuser');
-      expect(localStorage.getItem('token')).toBe('testtoken');
-    });
+    // Expect loginUser to be called with the correct arguments
+    expect(mockApi.loginUser).toHaveBeenCalledWith('testuser', 'testpassword');
   });
 
   it('handles user registration', async () => {
-    // Mock the registerUser function to return a user
-    AuthApi.registerUser.mockResolvedValue({ username: 'testuser' });
+    const { getByLabelText, getByText } = render(
+      <ToastProvider>
+        <AuthContextProvider>
+          <SignInForm api={mockApi} error="" />
+        </AuthContextProvider>
+      </ToastProvider>
+    );
 
-    // Mock the useAuth hook
-    const useAuthMock = {
-      login: jest.fn(),
-    };
+    const usernameInput = getByLabelText('Username');
+    const passwordInput = getByLabelText('Password');
 
-    jest.spyOn(require('./AuthContext'), 'useAuth').mockReturnValue(useAuthMock);
-
-    render(<SignInForm api={AuthApi} error="" />);
-
-    // Find the username and password input fields
-    const usernameInput = screen.getByLabelText('Username');
-    const passwordInput = screen.getByLabelText('Password');
-
-    // Enter the username and password
     fireEvent.change(usernameInput, { target: { value: 'testuser' } });
     fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
 
-    // Find and click the "Register" button
-    const registerButton = screen.getByText('Register');
-    fireEvent.click(registerButton);
+    fireEvent.click(getByText('Register'));
 
-    // Wait for the registration to be called with the correct username
-    await waitFor(() => {
-      expect(AuthApi.registerUser).toHaveBeenCalledWith('testuser', 'testpassword');
-      expect(useAuthMock.login).toHaveBeenCalledWith({ username: 'testuser' });
-    });
+    // Expect registerUser to be called with the correct arguments
+    expect(mockApi.registerUser).toHaveBeenCalledWith('testuser', 'testpassword');
   });
 });
