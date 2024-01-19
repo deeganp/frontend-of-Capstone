@@ -1,43 +1,48 @@
 .movie-list-container {
-  justify-content: center; /* Center the container horizontally */
-  width: 900px; /* Limit the width to 75% */
-  margin: 0 auto; /* Center the container horizontally */
+  justify-content: center;
+  /* Center the container horizontally */
+  width: 900px;
+  /* Limit the width to 75% */
+  margin: 0 auto;
+  /* Center the container horizontally */
 }
 
 .movie-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 20px;
-  }
-.movie-details{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 20px;
+}
+
+.movie-details {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  }
-  .movie-name {
-    margin-right: 10px;
-flex-grow: 1;
-  }
-  
-  .movie-item {
-    color: #4287f5;
-    border: 1px solid #ddd;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 5px;
-    transition: transform 0.2s ease-in-out;
-    font-weight: bold;
-    font-size: 22px;
-    margin: 5px 0;
-    max-width: 75%
-  }
-  
-  .movie-item:hover {
-    transform: scale(1.05);
-  }
-  
+}
+
+.movie-name {
+  margin-right: 10px;
+  flex-grow: 1;
+}
+
+.movie-item {
+  color: #4287f5;
+  border: 1px solid #ddd;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 5px 0;
+  max-width: 75%
+}
+
+.movie-item:hover {
+  transform: scale(1.05);
+}
+
 .button-29 {
   align-items: center;
   appearance: none;
@@ -55,8 +60,8 @@ flex-grow: 1;
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 3vh;
+  padding-right: 3vh;
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -67,6 +72,7 @@ flex-grow: 1;
   white-space: nowrap;
   will-change: box-shadow,transform;
   font-size: 18px;
+  margin: 0 8px 0 0;
 }
 
 .button-29:focus {
