@@ -14,15 +14,20 @@ const MovieList = ({ api, movies }) => {
 
   const handleAddFavorite = async (movieName) => {
     try {
-      // Get the username of the currently logged-in user from your authentication context
-      const username = user;
-      // Call the addFavorite method to add the movie to the user's favorites
-      await api.addFavorite(username, movieName);
+      if (user) {
+        // Get the username of the currently logged-in user from your authentication context
+        const username = user;
+        // Call the addFavorite method to add the movie to the user's favorites
+        await api.addFavorite(username, movieName);
 
-      // fetch the updated favorites here and set them in state
-      const updatedFavorites = await api.getFavorites(username);
-      setFavorites(updatedFavorites);
-      addToast(`Added ${movieName} to favorites!`, { appearance: 'success', autoDismiss: true });
+        // fetch the updated favorites here and set them in state
+        const updatedFavorites = await api.getFavorites(username);
+        setFavorites(updatedFavorites);
+        addToast(`Added ${movieName} to favorites!`, { appearance: 'success', autoDismiss: true });
+      }
+      else {
+        addToast(`Please Sign In Before Adding Movies To Favorites`, { appearance: 'error', autoDismiss: true })
+      }
     } catch (error) {
       // Handle errors, such as when the user is not logged in
       console.error('Failed to add favorite', error);
