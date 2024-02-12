@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
 import { useToasts } from 'react-toast-notifications';
 import './signInForm.css'
@@ -9,6 +9,10 @@ const SignInForm = ({ api, error, setAuthenticated  }) => {
   const [password, setPassword] = useState('');
   const { login } = useAuth();
   const { addToast } = useToasts();
+
+  useEffect(() => {
+    addToast(`Please Sign In To View Favorites`, { appearance: 'info', autoDismiss: true });
+  }, [addToast]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
