@@ -11,6 +11,9 @@ function NavBar() {
                 <NavLink exact to="/" className="nav-link">Home</NavLink>
                 <Nav className="ml-auto" navbar>
                     <NavItem className="nav-item">
+                        <NavLink to="/aboutpage" className="nav-link" activeClassName="active">About</NavLink>
+                    </NavItem>
+                    <NavItem className="nav-item">
                         <NavLink to="/searchmovies" className="nav-link" activeClassName="active">Search Movies!</NavLink>
                     </NavItem>
                     <NavItem className="nav-item">
