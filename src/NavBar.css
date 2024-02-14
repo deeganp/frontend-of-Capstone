@@ -1,6 +1,6 @@
 /* Style for the navigation links */
 .navbar-style {
-  background-color:  black; 
+  background-color: black; 
   border: 5px solid #ffd700;
   font-family: 'Limelight', cursive;
 }
@@ -14,17 +14,18 @@
     border: 3px solid #007bff; 
     border-radius: 5px;
     font-family: 'Limelight', cursive;
+background-color: black;
   }
   
   /* Style for the navigation links on hover */
-  .nav-link:hover {
+  .nav-link:hover, .nav-link button:hover {
     color: #fff;
     background-color: #007bff;
     border-radius: 5px;
   }
   
-  /* Style for the active navigation link */
-  .nav-link.active {
+  /* Style for the active navigation link and button */
+  .nav-link.active, .nav-link button.active {
     color: #fff;
     background-color: #007bff;
     border-radius: 5px;
