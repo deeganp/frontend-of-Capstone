@@ -39,7 +39,7 @@ class MovieAppApi {
     }
   }
 
-  async addFavorite(username, movieName) {
+  async addFavorite(username, movieName, movieImdbId) {
     try {
       // Make a POST request to add a favorite movie
       const response = await axios.post(`${this.apiBase}/users/favorites/add`, {
