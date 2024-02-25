@@ -6,8 +6,8 @@ import './MovieDetailsPage.css';
 
 const MovieDetailsPage = () => {
   const { state } = useLocation();
-  const movieInfo = state?.movie;
-  const [movieDetails, setMovieDetails] = useState(state?.movie);
+  const movieInfo = state?.movieInfo;
+  const [movieDetails, setMovieDetails] = useState(movieInfo);
 
   useEffect(() => {
     const fetchMoviePoster = async () => {

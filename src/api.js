@@ -8,7 +8,7 @@ class MovieAppApi {
     this.apiBase = process.env.REACT_APP_BASE_URL;
   }
 
-   async registerUser(username, password) {
+  async registerUser(username, password) {
     try {
       // Make a POST request to register a new user
       const response = await axios.post(`${this.apiBase}/users/register`, {
@@ -23,17 +23,17 @@ class MovieAppApi {
 
   async loginUser(username, password, token = null) {
     try {
-      if(token){
+      if (token) {
         const res = await axios.post(`${this.apiBase}/users/login`, { token });
         return res.data;
       } else {
-      // Make a POST request to log in
-      const response = await axios.post(`${this.apiBase}/users/login`, {
-        username,
-        password,
-      });
-      return response.data; // Return authentication result (e.g., token)
-     }
+        // Make a POST request to log in
+        const response = await axios.post(`${this.apiBase}/users/login`, {
+          username,
+          password,
+        });
+        return response.data; // Return authentication result (e.g., token)
+      }
     } catch (error) {
       throw new Error('Login failed');
     }
@@ -45,9 +45,10 @@ class MovieAppApi {
       const response = await axios.post(`${this.apiBase}/users/favorites/add`, {
         username,
         movieName,
+        movieImdbId
       });
-      return response.data; 
-      
+      return response.data;
+
       // Return result (e.g., success message)
     } catch (error) {
       throw new Error('Failed to add favorite movie');
@@ -58,23 +59,23 @@ class MovieAppApi {
     try {
       // Make a GET request to retrieve user favorites
       const response = await axios.get(`${this.apiBase}/users/${username}/favorites`);
-  
+
       // Extract favorites from the response
       const { favorites } = response.data;
-  
+
       return favorites;
     } catch (error) {
       throw new Error('Failed to retrieve user favorites');
     }
   }
-  
-  async deleteFavorite(username, movieName) {
+
+  async deleteFavorite(username, movieName, movieImdbId) {
     try {
       // Make a DELETE request to delete a favorite movie
       const response = await axios.delete(`${this.apiBase}/users/favorites/delete`, {
-        data: { username, movieName }, // Send username and movieName in the request body
+        data: { username, movieName, movieImdbId }, // Send username and movieName in the request body
       });
-      
+
       return response.data; // Return result (e.g., success message)
     } catch (error) {
       throw new Error('Failed to delete favorite movie');
