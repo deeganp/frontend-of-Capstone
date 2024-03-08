@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
 import Movie from './MovieClass';
 import { useHistory } from 'react-router-dom';
-import './MovieForm.css'
+import { useToasts } from 'react-toast-notifications'; 
+import './MovieForm.css';
 
 const SearchMovie = ({ SetMovies }) => {
   const history = useHistory();
+  const { addToast } = useToasts(); 
   const [movieName, setMovieName] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!movieName.trim()) {
+      addToast('Please enter a movie name', { appearance: 'warning' }); 
+      return; 
+    }
+
     try {
       const movieData = await Movie.getMovieByTitle(movieName);
       SetMovies(movieData);
-
       history.push('/results');
     } catch (error) {
-      console.error('Error fetching movie data;', error);
+      console.error('Error fetching movie data:', error);
+      addToast('Error fetching movie data', { appearance: 'error' }); // Display error toast
     }
   };
-
 
   return (
     <div className='movie-form-container'>
