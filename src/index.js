@@ -5,8 +5,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthContextProvider } from './AuthContext';
+import './styles.css'
 
-ReactDOM.render( <AuthContextProvider><App /></AuthContextProvider>, document.getElementById("root"));
+ReactDOM.render(
+                 <AuthContextProvider>
+                   <App />
+                 </AuthContextProvider>
+        , document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

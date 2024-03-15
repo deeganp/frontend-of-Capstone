@@ -9,7 +9,7 @@
 }
 
 .row {
-    margin-bottom: 2vh;
+    margin-bottom: 20px;
 }
 
 .col-md-4 img {
@@ -19,30 +19,27 @@
 }
 
 .col-md-4 p {
-    margin-top: 2vh;
-
+    margin-top: 10px;
 }
 
 .col-md-8 h2 {
-    font-size: 3vh;
+    font-size: 2.5rem;
     margin-bottom: 10px;
 }
 
 .col-md-8 p {
-    font-size: 2vh;
+    font-size: 1.6rem;
     margin-bottom: 8px;
 }
 
-.img-fluid custom-image {
+.custom-image {
     max-width: 100%;
-    /* Adjust as needed */
     height: auto;
     border-radius: 5px;
 }
 
 .streaming-info {
     font-size: 1.6rem;
-    /* Adjust the font size if necessary */
 }
 
 .streaming-info div {

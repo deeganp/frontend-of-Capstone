@@ -23,7 +23,7 @@ const SearchMovie = ({ SetMovies }) => {
       history.push('/results');
     } catch (error) {
       console.error('Error fetching movie data:', error);
-      addToast('Error fetching movie data', { appearance: 'error' }); // Display error toast
+      addToast('Error fetching movie data', { appearance: 'error' });
     }
   };
 
@@ -37,7 +37,7 @@ const SearchMovie = ({ SetMovies }) => {
           onChange={(e) => setMovieName(e.target.value)}
           className="form-group"
         />
-        <button type='submit' className='btn'>Search!</button>
+        <button type='submit' className='btn btn-primary rounded-pill px-3 mb-2 mb-lg-0'>Search!</button>
       </form>
     </div>
   );

@@ -8,7 +8,7 @@ import './favorites.css';
 import Movie from './MovieClass';
 
 const Favorites = () => {
-  const { user } = useAuth(); // Access the current user from your AuthContext
+  const { user } = useAuth();
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -72,22 +72,31 @@ const Favorites = () => {
 
   return (
     <div>
-      <p id='fav-page-title'>My Favorites</p>
-      {favorites.length > 0 ? (
-        <ul className='fav-list'>
-          {favorites.map((favorite) => (
-            <li key={favorite.imdbId} className='fav-item'>
-              {favorite.title}
-              <div className="button-container">
-                <button className='button-29' onClick={() => getMovieDetailsByID(favorite.imdbId)}>Details</button>
-                <button className='delete' onClick={() => handleDeleteFavorite(favorite.title, favorite.imdbId)}>Delete</button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <NoFavorites />
-      )}
+      {/* Favorites Section */}
+      <section id="favorites" className="bg-light">
+        <div className="container px-5">
+          <div className="row">
+            <div className="col">
+              <h2 className="display-4">My Favorites</h2>
+              {favorites.length > 0 ? (
+                <ul className='fav-list'>
+                  {favorites.map((favorite) => (
+                    <li key={favorite.imdbId} className='fav-item'>
+                      <span className="movie-name">{favorite.title}</span>
+                      <div className="button-container">
+                        <button className='button-29' onClick={() => getMovieDetailsByID(favorite.imdbId)}>Details</button>
+                        <button className='button-28' onClick={() => handleDeleteFavorite(favorite.title, favorite.imdbId)}>Delete</button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <NoFavorites />
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
